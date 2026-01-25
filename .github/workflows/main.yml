@@ -1,9 +1,8 @@
-name: CI/CD Pipeline
+name: CI/CD Portfolio
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
   build-and-deploy:
@@ -11,31 +10,18 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
+    - name: Build Docker Image
+      run: docker build -t portfolio:latest .
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-
-    - name: Run tests
-      run: |
-        pytest
-
-    - name: Deploy to server
+    - name: Deploy to Server
       uses: appleboy/ssh-action@v0.1.7
       with:
         host: ${{ secrets.SERVER_HOST }}
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          cd /var/www/myapp
-          git pull origin main
-          source venv/bin/activate
-          pip install -r requirements.txt
-          systemctl restart myapp
+          cd ~/Portfolio
+          docker-compose down
+          docker-compose up -d --build
