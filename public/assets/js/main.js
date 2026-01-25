@@ -358,3 +358,101 @@ if (document.readyState === 'loading') {
 } else {
     init();
 }
+
+
+// Contact Form Handler with Database
+const contactFormHandler = () => {
+    const form = document.querySelector('.contact-form');
+    
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        
+        // Validation
+        if (!name || !email || !message) {
+            showNotification('გთხოვთ შეავსოთ ყველა ველი!', 'error');
+            return;
+        }
+        
+        if (!isValidEmail(email)) {
+            showNotification('გთხოვთ შეიყვანოთ ვალიდური Email!', 'error');
+            return;
+        }
+        
+        // Show loading
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'იგზავნება...';
+        submitBtn.disabled = true;
+        
+        try {
+            // Send to Backend API
+            const response = await fetch('http://localhost:5000/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, message })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                showNotification(data.message, 'success');
+                form.reset();
+            } else {
+                showNotification(data.message, 'error');
+            }
+            
+        } catch (error) {
+            console.error('Error:', error);
+            showNotification('სერვერთან დაკავშირება ვერ მოხერხდა!', 'error');
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+};
+
+// Email Validation
+const isValidEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+};
+
+// Notification System
+const showNotification = (message, type) => {
+    // არსებული notification წაშალე
+    const existing = document.querySelector('.notification');
+    if (existing) existing.remove();
+    
+    const notification = document.createElement('div');
+    notification.classList.add('notification', type);
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+};
+
+// Initialize
+const init = () => {
+    // ... existing code ...
+    contactFormHandler();  // დაამატე ეს
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
