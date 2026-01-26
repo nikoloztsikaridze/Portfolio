@@ -1,0 +1,344 @@
+.mafia-page {
+    min-height: 100vh;
+    padding: 8rem 2rem 4rem;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.game-title {
+    text-align: center;
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.game-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #94a3b8;
+    margin-bottom: 3rem;
+}
+
+/* ========================================
+   Setup Screen
+======================================== */
+
+.setup-screen {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.setup-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #1e293b;
+}
+
+.player-input {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #6366f1;
+}
+
+.input-group label {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background: white;
+    padding: 0 5px;
+    font-size: 0.9rem;
+    color: #6366f1;
+    font-weight: 600;
+}
+
+.start-btn {
+    width: 100%;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.start-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+}
+
+/* ========================================
+   Reveal Screen
+======================================== */
+
+.reveal-screen {
+    display: none;
+}
+
+#reveal-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.reveal-card {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.player-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #6366f1;
+    margin-bottom: 0.5rem;
+}
+
+.role-revealer {
+    background: #f8fafc;
+    border: 3px dashed #cbd5e1;
+    border-radius: 20px;
+    padding: 3rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.role-revealer:hover {
+    background: #f1f5f9;
+    border-color: #6366f1;
+    transform: scale(1.05);
+}
+
+.role-hidden-large {
+    font-size: 8rem;
+    margin: 2rem 0;
+}
+
+.role-display {
+    animation: fadeIn 0.5s;
+}
+
+.role-icon-large {
+    font-size: 8rem;
+    margin: 2rem 0;
+    padding: 2rem;
+    border-radius: 20px;
+}
+
+.role-name-large {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.role-desc-large {
+    font-size: 1.1rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.next-player-btn {
+    width: 100%;
+    padding: 1.5rem;
+    background: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.next-player-btn:hover {
+    background: #334155;
+}
+
+/* ========================================
+   Admin Screen
+======================================== */
+
+.admin-screen {
+    display: none;
+}
+
+.admin-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 3rem;
+}
+
+#admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.admin-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 4px solid;
+}
+
+.admin-number {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #6366f1;
+    margin-bottom: 0.5rem;
+}
+
+.admin-name {
+    font-size: 1.1rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.admin-icon {
+    font-size: 3rem;
+    margin: 0.5rem 0;
+}
+
+.admin-role {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+}
+
+/* Role Colors */
+.don { border-color: #dc2626; background: linear-gradient(135deg, #fee2e2, white); }
+.mafia { border-color: #ef4444; }
+.detective { border-color: #3b82f6; }
+.doctor { border-color: #10b981; }
+.maniac { border-color: #a855f7; }
+.citizen { border-color: #94a3b8; }
+
+.restart-btn {
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto;
+    display: block;
+    padding: 1.5rem;
+    background: white;
+    color: #1e293b;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.restart-btn:hover {
+    background: #f1f5f9;
+}
+
+/* ========================================
+   Roles Legend
+======================================== */
+
+.roles-legend {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.roles-legend h3 {
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+}
+
+.legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.legend-icon {
+    font-size: 2rem;
+}
+
+.legend-text {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* ========================================
+   Animations
+======================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   Responsive
+======================================== */
+
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2rem;
+    }
+    
+    .player-input {
+        grid-template-columns: 1fr;
+    }
+    
+    .role-icon-large {
+        font-size: 6rem;
+    }
+    
+    #admin-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+EOF

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mafia თამაში 🎲</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/mafia.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">MyPortfolio</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">მთავარი</a></li>
+                <li><a href="mafia.html" class="nav-link active">Mafia თამაში</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="mafia-page">
+        <div class="game-container">
+            <h1 class="game-title">🎲 Mafia თამაში</h1>
+            <p class="game-subtitle">12 მოთამაშე | პრივატული როლების ჩვენება</p>
+            
+            <!-- Setup Screen -->
+            <div id="setup-screen" class="setup-screen">
+                <h2 class="setup-title">შეიყვანეთ მოთამაშეების სახელები</h2>
+                
+                <div class="player-input" id="player-inputs"></div>
+                
+                <button class="start-btn" onclick="startGame()">
+                    🎮 თამაშის დაწყება
+                </button>
+                
+                <div class="roles-legend">
+                    <h3>როლები:</h3>
+                    <div class="legend-grid">
+                        <div class="legend-item">
+                            <span class="legend-icon">👑</span>
+                            <span class="legend-text"><strong>1 დონი</strong></span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-icon">🔪</span>
+                            <span class="legend-text"><strong>2 მაფიოზი</strong></span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-icon">🕵️</span>
+                            <span class="legend-text"><strong>1 დეტექტივი</strong></span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-icon">💊</span>
+                            <span class="legend-text"><strong>1 ექიმი</strong></span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-icon">🔪</span>
+                            <span class="legend-text"><strong>1 მანიაკი</strong></span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-icon">👨‍👩‍👧‍👦</span>
+                            <span class="legend-text"><strong>6 მოქალაქე</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reveal Screen -->
+            <div id="reveal-screen" class="reveal-screen">
+                <div id="reveal-container"></div>
+            </div>
+            
+            <!-- Admin Screen -->
+            <div id="admin-screen" class="admin-screen">
+                <h2 class="admin-title">📋 ყველა მოთამაშის როლები</h2>
+                <div id="admin-grid"></div>
+                <button class="restart-btn" onclick="restartGame()">
+                    🔄 თამაშის თავიდან დაწყება
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/mafia.js"></script>
+</body>
+</html>
+EOF
