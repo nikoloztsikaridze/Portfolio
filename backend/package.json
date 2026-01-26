@@ -1,6 +1,5 @@
-cat > package.json << 'EOF'
 {
-  "name": "portfolio-contact-api",
+  "name": "portfolio-backend",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -12,4 +11,3 @@ cat > package.json << 'EOF'
     "cors": "^2.8.5"
   }
 }
-EOF
