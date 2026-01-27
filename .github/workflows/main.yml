@@ -1,0 +1,31 @@
+name: CI/CD Portfolio
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build: 
+    name: Build Docker image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dowload Code
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run:  |
+          docker build -t my-portfolio:latest .
+
+      - name: Test website  
+        run: |
+          docker run -d -p 8080:80 --name test my-portfolio:latest
+          sleep 5
+          curl http://localhost:8080
+
+      - name: Done
+        run: |
+          echo "Build successful"
+          docker stop test
+          docker rm test
+EOF
