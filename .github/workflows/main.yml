@@ -1,31 +1,35 @@
-name: CI/CD Portfolio
+name: Simple CI/CD
+
 
 on:
   push:
     branches: [ main ]
+  # ↑ როცა "main" branch-ზე git push გააკეთებ
 
+# 📌 JOBS: რა უნდა გააკეთოს
 jobs:
-  build: 
-    name: Build Docker image
-    runs-on: ubuntu-latest
-
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest  # GitHub-ის Ubuntu server    
     steps:
-      - name: Dowload Code
+      # STEP 1: კოდის ჩამოტვირთვა
+      - name: 📥 Download Code
         uses: actions/checkout@v4
-
-      - name: Build Docker Image
+        # რას აკეთებს: git clone (შენი კოდი GitHub-დან)
+      # STEP 2: Docker Build
+      - name: 🏗️ Build Docker Image
         run: |
           docker build -t my-portfolio:latest .
-
-      - name: Test website  
+      - name: 🧪 Test Website
         run: |
           docker run -d -p 8080:80 --name test my-portfolio:latest
           sleep 5
           curl http://localhost:8080
-
-      - name: Done
+        # რას აკეთებს:
+        # 1. Container გაშვება (
+      - name: ✅ Done
         run: |
-          echo "Build successful"
+          echo "Build successful! 🎉"
           docker stop test
           docker rm test
 EOF
