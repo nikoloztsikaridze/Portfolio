@@ -1,0 +1,27 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Build Docker Image
+        run: docker build -t portfolio:latest .
+      
+      - name: Test Container
+        run: |
+          docker run -d -p 8080:80 --name test-container portfolio:latest
+          sleep 5
+          curl -f http://localhost:8080 || exit 1
+          docker stop test-container
+          docker rm test-container
+      
+      - name: Success
+        run: echo "✅ Build and test completed!"
